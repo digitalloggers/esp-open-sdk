@@ -246,19 +246,19 @@ esp_iot_sdk_v0.9.2_14_10_24.zip:
 libhal: $(TOOLCHAIN)/xtensa-lx106-elf/sysroot/usr/lib/libhal.a
 
 $(TOOLCHAIN)/xtensa-lx106-elf/sysroot/usr/lib/libhal.a: $(TOOLCHAIN)/bin/xtensa-lx106-elf-gcc
-	make -C lx106-hal -f ../Makefile _libhal
+	$(MAKE) -C lx106-hal -f ../Makefile _libhal
 
 _libhal:
 	autoreconf -i
 	PATH=$(TOOLCHAIN)/bin:$(PATH) ./configure --host=xtensa-lx106-elf --prefix=$(TOOLCHAIN)/xtensa-lx106-elf/sysroot/usr
-	PATH=$(TOOLCHAIN)/bin:$(PATH) make
-	PATH=$(TOOLCHAIN)/bin:$(PATH) make install
+	PATH=$(TOOLCHAIN)/bin:$(PATH) $(MAKE)
+	PATH=$(TOOLCHAIN)/bin:$(PATH) $(MAKE) install
 
 
 toolchain: $(TOOLCHAIN)/bin/xtensa-lx106-elf-gcc
 
 $(TOOLCHAIN)/bin/xtensa-lx106-elf-gcc: crosstool-NG/ct-ng
-	make -C crosstool-NG -f ../Makefile _toolchain
+	$(MAKE) -C crosstool-NG -f ../Makefile _toolchain
 
 _toolchain:
 	./ct-ng xtensa-lx106-elf
@@ -271,13 +271,13 @@ _toolchain:
 crosstool-NG: crosstool-NG/ct-ng
 
 crosstool-NG/ct-ng: crosstool-NG/bootstrap
-	make -C crosstool-NG -f ../Makefile _ct-ng
+	$(MAKE) -C crosstool-NG -f ../Makefile _ct-ng
 
 _ct-ng:
 	./bootstrap
 	./configure --prefix=`pwd`
-	make MAKELEVEL=0
-	make install MAKELEVEL=0
+	$(MAKE) MAKELEVEL=0
+	$(MAKE) install MAKELEVEL=0
 
 crosstool-NG/bootstrap:
 	@echo "You cloned without --recursive, fetching submodules for you."
@@ -285,7 +285,7 @@ crosstool-NG/bootstrap:
 
 
 clean: clean-sdk
-	make -C crosstool-NG clean MAKELEVEL=0
+	$(MAKE) -C crosstool-NG clean MAKELEVEL=0
 	-rm -rf crosstool-NG/.build/src
 	-rm -rf $(TOOLCHAIN)
 
