@@ -132,6 +132,8 @@ empty_user_rf_pre_init.o: empty_user_rf_pre_init.c $(TOOLCHAIN)/bin/xtensa-lx106
 
 .sdk_patch_0.9.6b1:
 	patch -N -d $(VENDOR_SDK_DIR_0.9.6b1) -p1 < c_types-c99.patch
+	patch -N -d $(VENDOR_SDK_DIR_0.9.6b1) -p1 < eagle_ld.patch
+	patch -N -d $(VENDOR_SDK_DIR_0.9.6b1) -p1 < eagle_soc_u0rxd.patch
 	@touch $@
 
 .sdk_patch_0.9.5: sdk095_patch1.zip esp_iot_sdk_v0.9.5/.dir
