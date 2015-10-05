@@ -72,11 +72,16 @@ libcirom: $(TOOLCHAIN)/xtensa-lx106-elf/sysroot/lib/libcirom.a
 sdk_patch: .sdk_patch_$(VENDOR_SDK)
 
 .sdk_patch_1.3.0:
+	patch -N -d $(VENDOR_SDK_DIR_1.3.0) -p1 < eagle_soc_u0rxd.patch
+	patch -N -d $(VENDOR_SDK_DIR_1.3.0) -p1 < eagle_ld_1.3.patch
 	patch -N -d $(VENDOR_SDK_DIR_1.3.0) -p1 < c_types-c99.patch
+	patch -N -d $(VENDOR_SDK_DIR_1.3.0) -p1 < c_types-text.patch
+	patch -N -d $(VENDOR_SDK_DIR_1.3.0) -p1 < c_types-sections.patch
+	patch -N -d $(VENDOR_SDK_DIR_1.3.0) -p1 < espconn-headers.patch
 	@touch $@
 
 .sdk_patch_1.2.0: lib_mem_optimize_150714.zip libssl_patch_1.2.0-2.zip empty_user_rf_pre_init.o
-	patch -N -d $(VENDOR_SDK_DIR_1.2.0) -p1 < eagle_ld_1.x.patch
+	patch -N -d $(VENDOR_SDK_DIR_1.2.0) -p1 < eagle_ld_1.2.patch
 	patch -N -d $(VENDOR_SDK_DIR_1.2.0) -p1 < eagle_soc_u0rxd.patch
 	patch -N -d $(VENDOR_SDK_DIR_1.2.0) -p1 < c_types-c99.patch
 	patch -N -d $(VENDOR_SDK_DIR_1.2.0) -p1 < c_types-sections.patch
