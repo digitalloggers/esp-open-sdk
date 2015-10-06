@@ -75,7 +75,6 @@ sdk_patch: .sdk_patch_$(VENDOR_SDK)
 	patch -N -d $(VENDOR_SDK_DIR_1.3.0) -p1 < eagle_soc_u0rxd.patch
 	patch -N -d $(VENDOR_SDK_DIR_1.3.0) -p1 < eagle_ld_1.3.patch
 	patch -N -d $(VENDOR_SDK_DIR_1.3.0) -p1 < c_types-c99.patch
-	patch -N -d $(VENDOR_SDK_DIR_1.3.0) -p1 < c_types-text.patch
 	patch -N -d $(VENDOR_SDK_DIR_1.3.0) -p1 < c_types-sections.patch
 	patch -N -d $(VENDOR_SDK_DIR_1.3.0) -p1 < espconn-headers.patch
 	@touch $@
@@ -141,9 +140,11 @@ empty_user_rf_pre_init.o: empty_user_rf_pre_init.c $(TOOLCHAIN)/bin/xtensa-lx106
 	@touch $@
 
 .sdk_patch_0.9.6b1:
-	patch -N -d $(VENDOR_SDK_DIR_0.9.6b1) -p1 < c_types-c99.patch
-	patch -N -d $(VENDOR_SDK_DIR_0.9.6b1) -p1 < eagle_ld.patch
+	patch -N -d $(VENDOR_SDK_DIR_0.9.6b1) -p1 < eagle_ld_0.9.patch
 	patch -N -d $(VENDOR_SDK_DIR_0.9.6b1) -p1 < eagle_soc_u0rxd.patch
+	patch -N -d $(VENDOR_SDK_DIR_0.9.6b1) -p1 < c_types-c99.patch
+	patch -N -d $(VENDOR_SDK_DIR_0.9.6b1) -p1 < c_types-sections.patch
+	patch -N -d $(VENDOR_SDK_DIR_0.9.6b1) -p1 < espconn-headers.patch
 	@touch $@
 
 .sdk_patch_0.9.5: sdk095_patch1.zip esp_iot_sdk_v0.9.5/.dir
