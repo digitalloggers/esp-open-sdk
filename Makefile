@@ -74,11 +74,7 @@ libcirom: $(TOOLCHAIN)/xtensa-lx106-elf/sysroot/lib/libcirom.a
 sdk_patch: .sdk_patch_$(VENDOR_SDK)
 
 .sdk_patch_1.4.0:
-	patch -N -d $(VENDOR_SDK_DIR_1.4.0) -p1 < eagle_soc_u0rxd.patch
-	patch -N -d $(VENDOR_SDK_DIR_1.4.0) -p1 < eagle_ld_1.3.patch
-	patch -N -d $(VENDOR_SDK_DIR_1.4.0) -p1 < c_types-c99.patch
-	patch -N -d $(VENDOR_SDK_DIR_1.4.0) -p1 < c_types-sections.patch
-	patch -N -d $(VENDOR_SDK_DIR_1.4.0) -p1 < espconn-headers-unix.patch
+	patch -N -d $(VENDOR_SDK_DIR_1.4.0) -p1 < dhcps_lease_enable.patch
 	@touch $@
 
 .sdk_patch_1.3.0:
